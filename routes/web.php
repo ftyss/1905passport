@@ -15,5 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/api/user/reg','Api\UserController@reg');  // 用户注册
-Route::post('/api/user/login','Api\UserController@login');  // 用户登录
+Route::post('/api/user/reg','User\UserController@reg');     //注册
+Route::post('/api/user/login','User\UserController@login'); // 登录
+Route::get('/api/show/time','User\UserController@showTime'); // 获取数据

@@ -48,9 +48,11 @@ class UserController extends Controller
         $pass = $request->input('pass');
         // echo "pass：" . $pass;
 
-        $u = UserModel::where(['name'=>$name])->first();
+        $u1 = UserModel::where(['name'=>$name])->first();
+        $u2 = UserModel::where(['email'=>$email])->first();
+        $u3 = UserModel::where(['mobile'=>$mobile])->first();
         // var_dump($u);
-
+           
         if($u){
             // echo '<pre>';print_r($u->toArray());echo '</pre>';
             // 验证密码
@@ -60,12 +62,12 @@ class UserController extends Controller
                 // 生成token
                 $token = Str::random(32);
                 echo $token;
-                Redis::expire($token,604800);
+                Redis::Sadd($token,604800);
 
                 $response = [
                     'error' => 0,
                     'msg'   => 'ok',
-                    'data'  => [
+                     'data'  => [
                         'token' => $token
                     ]
                 ];
