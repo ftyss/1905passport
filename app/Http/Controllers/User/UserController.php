@@ -195,7 +195,6 @@ class UserController extends Controller
 
     public function auth()
     {
-
         $uid=$_POST['uid'];
         $token=$_POST['token'];
         
