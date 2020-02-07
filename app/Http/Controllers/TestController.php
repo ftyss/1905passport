@@ -52,4 +52,30 @@ class TestController extends Controller
             echo "验签失败";
         }
     }
+
+    public function md5Check2()
+    {
+        //echo 123;die;
+        echo '<pre>';print_r($_GET);echo '</pre>';
+        $data=$_GET['data'];
+        $sign=$_GET['sign'];
+        //echo $data;echo '</br>';
+        //echo $sign;echo '</br>';
+
+        $sign_str=base64_decode($sign);
+        echo "base64_decode后的数据 ：".$sign_str;echo '</br>';
+
+        //验签
+        $path=storage_path('keys/pub.key');
+        $pkeyid=openssl_pkey_get_public("file://".$path);
+
+         $d=openssl_verify($data,$sign_str,$pkeyid);
+         openssl_free_key($pkeyid);
+         if($d==1){
+             echo "验签通过";
+         }else{
+             echo "验签失败";
+         }
+          
+    }
 }
