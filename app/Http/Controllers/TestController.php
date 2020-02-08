@@ -97,4 +97,20 @@ class TestController extends Controller
         $dec_data=openssl_decrypt($d,$method,$key,OPENSSL_RAW_DATA,$iv);
         echo "解密数据 ：".$dec_data;
     }
+
+    /**
+     * 非对称解密
+     */
+    public function decrypt2()
+    {
+        //echo 123;
+        //print_r($_GET);die;
+        $enc_data_str=$_GET['data'];
+        echo "接收到的数据 ：".$enc_data_str;echo '</br>';
+        //echo 123;die;
+        $base64_decode_str=base64_decode($enc_data_str);echo '</br>';
+        $pub_key=file_get_contents(storage_path('keys/pub.key'));
+        openssl_public_decrypt($base64_decode_str,$dec_data,$pub_key);
+        echo "解密数据 ：".$dec_data;
+    }
 }
