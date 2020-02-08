@@ -75,7 +75,26 @@ class TestController extends Controller
              echo "验签通过";
          }else{
              echo "验签失败";
-         }
-          
+         }   
+    }
+
+    /**
+     * 对称解密
+     */
+    public function decrypt()
+    {
+        //echo 123;die;
+        echo '<pre>';print_r($_GET);echo '</pre>';
+        $data=$_GET['data'];
+        $d=base64_decode($data);
+        echo "接收的数据 ：".$data;echo '</br>';
+        echo "base64_decode之后的数据 ：".$d;echo '</br>';
+
+        //对称解密
+        $method='AES-256-CBC';
+        $key='1905';
+        $iv='amfkjjjdsvkwdsja';
+        $dec_data=openssl_decrypt($d,$method,$key,OPENSSL_RAW_DATA,$iv);
+        echo "解密数据 ：".$dec_data;
     }
 }

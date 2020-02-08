@@ -26,5 +26,6 @@ Route::post('/api/auth','User\UserController@auth'); // 鉴权
 Route::get('/test/check','TestController@md5Check');    //验签
 Route::post('/test/check1','TestController@md5Check1');     //POST验签
 Route::get('/test/check2','TestController@md5Check2');    //密钥验签
+Route::get('/test/decrypt','TestController@decrypt');      //对称解密
 
 ###############################################################################################
