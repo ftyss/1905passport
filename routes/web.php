@@ -29,4 +29,8 @@ Route::get('/test/check2','TestController@md5Check2');    //密钥验签
 Route::get('/test/decrypt','TestController@decrypt');      //对称解密
 Route::get('/test/decrypt2','TestController@decrypt2');      //非对称解密
 
+
+//2月11日  微信小程序请求passport
+Route::get('/wx/slideshow','WeChat\MiniProcedureController@images');    //轮播图接口
+
 ###############################################################################################
